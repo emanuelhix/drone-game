@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://du3w5fj8cox78"]
+
+[sub_resource type="GDScript" id="GDScript_0slhv"]
+script/source = "extends Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	print(time_left)
+"
+
+[node name="World" type="Node2D"]
+
+[node name="RoomTimer" type="Timer" parent="."]
+wait_time = 1500.0
+one_shot = true
+autostart = true
+script = SubResource("GDScript_0slhv")
