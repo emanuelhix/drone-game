@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Escape Room Drone Game
 
 ## Project Description
