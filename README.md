@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Escape Room Drone Game
 
 ## Project Description
@@ -23,3 +24,6 @@ A shorter version of the above is:
 git checkout -b "feature_name_development"
 ```
 After pushing these changes, they can be merged later.
+=======
+# drone-game
+>>>>>>> architecture_development

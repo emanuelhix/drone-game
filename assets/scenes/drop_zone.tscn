@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ckkt5fo8jbctw"]
+
+[node name="DropZone" type="Node2D"]
