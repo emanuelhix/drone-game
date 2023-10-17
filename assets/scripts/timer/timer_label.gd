@@ -5,7 +5,7 @@ extends Label
 
 @export var game_timer : Timer = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.text = seconds2hhmmss(game_timer.time_left)
 	# clean up process function after the timer is done running.
 	if game_timer.time_left <= 0:
