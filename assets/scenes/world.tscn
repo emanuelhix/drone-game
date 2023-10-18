@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://du3w5fj8cox78"]
+[gd_scene load_steps=4 format=3 uid="uid://du3w5fj8cox78"]
 
 [ext_resource type="Script" path="res://assets/scripts/world/world.gd" id="1_ps5y6"]
 [ext_resource type="Script" path="res://assets/scripts/timer/timer_label.gd" id="1_uyhpe"]
+[ext_resource type="Script" path="res://assets/scenes/GameTimer.gd" id="2_esjm6"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ps5y6")
@@ -10,6 +11,7 @@ script = ExtResource("1_ps5y6")
 wait_time = 10.0
 one_shot = true
 autostart = true
+script = ExtResource("2_esjm6")
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
