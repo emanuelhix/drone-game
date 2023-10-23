@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3nugfy2y6kw3"]
+
+[ext_resource type="Texture2D" uid="uid://c06xm4nkb6ao0" path="res://assets/world/background.png" id="1_ebdhu"]
+[ext_resource type="Texture2D" uid="uid://b6wwgi6vps1rl" path="res://assets/world/train_tracks.png" id="2_ptwgm"]
+[ext_resource type="Texture2D" uid="uid://bejduba580swv" path="res://assets/world/train.png" id="3_8fio2"]
+
+[sub_resource type="Animation" id="Animation_wqj4x"]
+resource_name = "Travel"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1240, 422), Vector2(-1274, 422)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pto82"]
+_data = {
+"Travel": SubResource("Animation_wqj4x")
+}
+
+[node name="Node" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ebdhu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Tracks" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(576, 324)
+texture = ExtResource("2_ptwgm")
+
+[node name="Train" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(1240, 422)
+texture = ExtResource("3_8fio2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Train"]
+autoplay = "Travel"
+libraries = {
+"": SubResource("AnimationLibrary_pto82")
+}
