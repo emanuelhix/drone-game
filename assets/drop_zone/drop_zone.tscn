@@ -9,7 +9,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("LidLeft:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
@@ -21,7 +21,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("LidRight:position")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
@@ -40,13 +40,13 @@ _data = {
 [node name="LidLeft" type="Sprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-position = Vector2(-3.5, -8)
+position = Vector2(-8, -8)
 texture = ExtResource("1_xghyf")
 
 [node name="LidRight" type="Sprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-position = Vector2(3.5, -8)
+position = Vector2(8, -8)
 texture = ExtResource("1_xghyf")
 flip_h = true
 
