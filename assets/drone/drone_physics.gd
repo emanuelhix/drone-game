@@ -49,7 +49,8 @@ func on_integrate_forces(state):
 		self.angular_velocity = -2;
 
 func on_drop_item(item : PhysicsBody2D):
-	item.reparent(self.get_parent())
+	item.top_level = true
+	item.global_position = carry_position_marker.global_position
 	item.set_deferred("freeze", false)
 
 func pick_up_item(item : PhysicsBody2D):

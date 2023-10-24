@@ -6,6 +6,8 @@
 size = Vector2(10, 12)
 
 [node name="AntidoteBody" type="RigidBody2D"]
+z_index = 1
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wdv18")

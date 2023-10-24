@@ -47,6 +47,8 @@ shader_parameter/is_active = false
 size = Vector2(78, 100)
 
 [node name="CrateArea" type="Area2D"]
+z_index = 2
+z_as_relative = false
 gravity = 90.0
 script = ExtResource("1_c5tgd")
 

@@ -13,7 +13,7 @@ var colliding_body : RigidBody2D = null
 func _ready():
 	self.body_entered.connect(on_body_entered)
 	self.set_process(false)
-	self.end = end_marker.position
+	self.end = end_marker.global_position
 
 func _process(delta):
 	# curve path
@@ -22,6 +22,7 @@ func _process(delta):
 		colliding_body.position = curve_position
 		t += delta/0.465
 	else:
+		colliding_body.rotation = 0
 		antidote_collected.emit()
 		# cleanup
 		set_process(false)
@@ -31,10 +32,9 @@ func on_body_entered(body : RigidBody2D):
 	self.colliding_body = body
 	body.freeze_mode = body.FREEZE_MODE_STATIC
 	body.set_deferred("freeze", true)
-	# using object/local position here, so reparenting and re-calculating
-	self.start = body.global_position - self.global_position
-	colliding_body.reparent(self)
-	colliding_body.position = self.start
+	body.top_level = true
+	self.start = body.global_position
+	colliding_body.global_position = self.start
 	var size = self.find_child("CollisionShape2D").shape.size
-	self.middle = position + Vector2(0, randf_range(-size.y/6, size.y/6))
+	self.middle = self.global_position + Vector2(0, randf_range(-size.y/6, size.y/6))
 	self.set_process(true)
