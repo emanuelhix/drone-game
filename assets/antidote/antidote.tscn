@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhfm26yf3vlvx"]
+
+[ext_resource type="Texture2D" uid="uid://8xd26sevt6fk" path="res://assets/antidote/antidote.png" id="1_ko7gd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdv18"]
+size = Vector2(10, 12)
+
+[node name="AntidoteBody" type="RigidBody2D"]
+z_index = 1
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wdv18")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ko7gd")

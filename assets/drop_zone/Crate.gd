@@ -11,6 +11,7 @@ const IS_SHADER_ACTIVE_NAME: String = "is_active"
 @onready var lid_left : Sprite2D = self.get_parent().find_child("LidLeft")
 @onready var lid_right : Sprite2D = self.get_parent().find_child("LidRight")
 @onready var closed_lid_sprite : Sprite2D = self.get_parent().find_child("Closed")
+@onready var crate_detection : Area2D = self.get_parent().get_parent()
 
 func toggle_crate(open_lid: bool):
 	if open_lid:
@@ -20,6 +21,7 @@ func toggle_crate(open_lid: bool):
 		animation_player.animation_finished.connect(on_lid_closed)
 
 func _ready():
+	crate_detection.antidote_collected.connect(on_antidote_collected)
 	closed_lid_sprite.hide()
 	if toggle_on_ready:
 		toggle_crate(lid_open)
@@ -38,3 +40,6 @@ func on_lid_closed(_anim_name):
 		animation_player.animation_finished.disconnect(on_lid_closed)
 		timer.queue_free()
 	)
+
+func on_antidote_collected():
+	toggle_crate(false)
