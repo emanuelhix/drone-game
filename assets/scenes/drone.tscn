@@ -19,6 +19,7 @@ mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_qjry8")
 gravity_scale = 0.5
 linear_damp = 2.0
+angular_damp = 5.0
 script = ExtResource("2_11vm3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
