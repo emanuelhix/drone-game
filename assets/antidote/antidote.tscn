@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhfm26yf3vlvx"]
+
+[ext_resource type="Texture2D" uid="uid://8xd26sevt6fk" path="res://assets/antidote/antidote.png" id="1_ko7gd"]
+
+[node name="Antidote" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ko7gd")
