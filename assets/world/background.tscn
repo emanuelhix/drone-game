@@ -55,7 +55,7 @@ texture = ExtResource("2_ptwgm")
 
 [node name="Train" type="Sprite2D" parent="CanvasLayer"]
 texture_filter = 1
-position = Vector2(1240, 422)
+position = Vector2(1214.86, 422)
 texture = ExtResource("3_8fio2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Train"]

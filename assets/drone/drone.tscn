@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcmnbrk8gsqgk"]
+
+[ext_resource type="Texture2D" uid="uid://2wrlve77m88u" path="res://assets/drone/drone_white.png" id="1_0fkl1"]
+
+[node name="Drone" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_0fkl1")

@@ -14,7 +14,12 @@ autostart = true
 
 [node name="Background" parent="." instance=ExtResource("3_oswmj")]
 
-[node name="GameUI" type="Control" parent="."]
+[node name="Train" parent="Background/CanvasLayer" index="1"]
+position = Vector2(1240, 422)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -22,10 +27,12 @@ offset_bottom = 40.0
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="TimerLabel" type="Label" parent="GameUI" node_paths=PackedStringArray("game_timer")]
+[node name="TimerLabel" type="Label" parent="UILayer/GameUI" node_paths=PackedStringArray("game_timer")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("2_7hwlm")
-game_timer = NodePath("../../GameTimer")
+game_timer = NodePath("../../../GameTimer")
 metadata/_edit_use_anchors_ = true
+
+[editable path="Background"]
