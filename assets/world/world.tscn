@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://du3w5fj8cox78"]
+[gd_scene load_steps=5 format=3 uid="uid://du3w5fj8cox78"]
 
 [ext_resource type="Script" path="res://assets/scripts/world/world.gd" id="1_6p3io"]
 [ext_resource type="Script" path="res://assets/scripts/timer/timer_label.gd" id="2_7hwlm"]
 [ext_resource type="PackedScene" uid="uid://c3nugfy2y6kw3" path="res://assets/world/background.tscn" id="3_oswmj"]
+[ext_resource type="PackedScene" uid="uid://dcmnbrk8gsqgk" path="res://assets/scenes/drone.tscn" id="4_nncp3"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_6p3io")
@@ -29,3 +30,6 @@ offset_bottom = 23.0
 script = ExtResource("2_7hwlm")
 game_timer = NodePath("../../GameTimer")
 metadata/_edit_use_anchors_ = true
+
+[node name="Drone" parent="." instance=ExtResource("4_nncp3")]
+position = Vector2(573, 250)
