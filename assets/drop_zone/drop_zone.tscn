@@ -44,7 +44,7 @@ shader = ExtResource("2_spcrf")
 shader_parameter/is_active = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l55jl"]
-size = Vector2(44, 51)
+size = Vector2(78, 100)
 
 [node name="CrateArea" type="Area2D"]
 gravity = 90.0
@@ -80,17 +80,13 @@ libraries = {
 }
 
 [node name="Closed" type="Sprite2D" parent="Visual"]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kqo2v")
 position = Vector2(0, -1)
 texture = ExtResource("4_mblyb")
 
-[node name="Camera2D" type="Camera2D" parent="Visual"]
-zoom = Vector2(3, 3)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -73.5)
+position = Vector2(1, -79)
 shape = SubResource("RectangleShape2D_l55jl")
 
 [node name="End" type="Marker2D" parent="."]

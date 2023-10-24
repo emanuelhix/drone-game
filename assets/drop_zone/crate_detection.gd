@@ -36,5 +36,5 @@ func on_body_entered(body : RigidBody2D):
 	colliding_body.reparent(self)
 	colliding_body.position = self.start
 	var size = self.find_child("CollisionShape2D").shape.size
-	self.middle = position + Vector2(randf_range(-size.x/2, size.x/2), randf_range(-size.y/2, size.y/2))
+	self.middle = position + Vector2(0, randf_range(-size.y/6, size.y/6))
 	self.set_process(true)
