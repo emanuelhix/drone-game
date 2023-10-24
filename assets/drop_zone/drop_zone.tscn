@@ -43,6 +43,7 @@ shader = ExtResource("2_spcrf")
 shader_parameter/is_active = false
 
 [node name="DropZone" type="Node2D"]
+z_index = 1
 
 [node name="LidLeft" type="Sprite2D" parent="."]
 z_index = 2
