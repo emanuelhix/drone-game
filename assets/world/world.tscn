@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://f2m77gyb8pf5"]
+
+[ext_resource type="Script" path="res://assets/world/world.gd" id="1_xtiw6"]
+[ext_resource type="PackedScene" uid="uid://2soy2xyjbhh3" path="res://assets/drone/drone.tscn" id="2_xulga"]
+[ext_resource type="PackedScene" uid="uid://c3nugfy2y6kw3" path="res://assets/world/background.tscn" id="3_oswmj"]
+[ext_resource type="PackedScene" uid="uid://dhfm26yf3vlvx" path="res://assets/antidote/antidote.tscn" id="3_uvd67"]
+[ext_resource type="Script" path="res://assets/world/timer_label.gd" id="4_p4opm"]
+[ext_resource type="Script" path="res://assets/antidote/antidote.gd" id="4_w0q2y"]
+[ext_resource type="PackedScene" uid="uid://ckkt5fo8jbctw" path="res://assets/drop_zone/drop_zone.tscn" id="6_dcqhq"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_xtiw6")
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Drone" parent="." node_paths=PackedStringArray("carried_antidote") instance=ExtResource("2_xulga")]
+position = Vector2(257, 38)
+carried_antidote = NodePath("AntidoteBody")
+
+[node name="AntidoteBody" parent="Drone" instance=ExtResource("3_uvd67")]
+script = ExtResource("4_w0q2y")
+
+[node name="Background" parent="." instance=ExtResource("3_oswmj")]
+
+[node name="Train" parent="Background/CanvasLayer" index="1"]
+position = Vector2(1240, 422)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerLabel" type="Label" parent="UILayer/GameUI" node_paths=PackedStringArray("game_timer")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_p4opm")
+game_timer = NodePath("../../../GameTimer")
+metadata/_edit_use_anchors_ = true
+
+[node name="CrateArea" parent="." instance=ExtResource("6_dcqhq")]
+position = Vector2(628, 630)
+
+[editable path="Background"]

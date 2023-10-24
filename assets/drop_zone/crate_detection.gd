@@ -28,7 +28,7 @@ func _process(delta):
 		set_process(false)
 		self.body_entered.disconnect(on_body_entered)
 
-func on_body_entered(body : RigidBody2D):
+func on_body_entered(body : Antidote):
 	self.colliding_body = body
 	body.freeze_mode = body.FREEZE_MODE_STATIC
 	body.set_deferred("freeze", true)
