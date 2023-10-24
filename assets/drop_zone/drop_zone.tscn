@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://ckkt5fo8jbctw"]
+[gd_scene load_steps=9 format=3 uid="uid://ckkt5fo8jbctw"]
+
+[ext_resource type="Texture2D" uid="uid://cpor20m3ssfq5" path="res://assets/drop_zone/drop_zone_crate_lid.png" id="1_xghyf"]
+[ext_resource type="Texture2D" uid="uid://djprptbksgiys" path="res://assets/drop_zone/drop_zone_crate.png" id="2_5nxun"]
+[ext_resource type="Shader" path="res://assets/drop_zone/invert_color.gdshader" id="2_spcrf"]
+[ext_resource type="Script" path="res://assets/drop_zone/Crate.gd" id="3_fmvr3"]
+[ext_resource type="Texture2D" uid="uid://60212nyuqewr" path="res://assets/drop_zone/drop_zone_crate_closed.png" id="4_mblyb"]
+
+[sub_resource type="Animation" id="Animation_r2o34"]
+resource_name = "close_lid"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LidLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -8), Vector2(-3.5, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LidRight:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, -8), Vector2(3.5, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xi41c"]
+_data = {
+"close_lid": SubResource("Animation_r2o34")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqo2v"]
+shader = ExtResource("2_spcrf")
+shader_parameter/is_active = false
 
 [node name="DropZone" type="Node2D"]
+z_index = 1
+
+[node name="LidLeft" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+position = Vector2(-8, -8)
+texture = ExtResource("1_xghyf")
+
+[node name="LidRight" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(8, -8)
+texture = ExtResource("1_xghyf")
+flip_h = true
+
+[node name="Crate" type="Sprite2D" parent="." node_paths=PackedStringArray("animation_player")]
+texture_filter = 1
+texture = ExtResource("2_5nxun")
+script = ExtResource("3_fmvr3")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xi41c")
+}
+
+[node name="Closed" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_kqo2v")
+position = Vector2(0, -1)
+texture = ExtResource("4_mblyb")
