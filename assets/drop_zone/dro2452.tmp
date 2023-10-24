@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckkt5fo8jbctw"]
+[gd_scene load_steps=12 format=3 uid="uid://ckkt5fo8jbctw"]
 
 [ext_resource type="Script" path="res://assets/drop_zone/crate_detection.gd" id="1_c5tgd"]
 [ext_resource type="Texture2D" uid="uid://cpor20m3ssfq5" path="res://assets/drop_zone/drop_zone_crate_lid.png" id="1_xghyf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://assets/drop_zone/invert_color.gdshader" id="2_spcrf"]
 [ext_resource type="Script" path="res://assets/drop_zone/Crate.gd" id="3_fmvr3"]
 [ext_resource type="Texture2D" uid="uid://60212nyuqewr" path="res://assets/drop_zone/drop_zone_crate_closed.png" id="4_mblyb"]
+[ext_resource type="PackedScene" uid="uid://dhfm26yf3vlvx" path="res://assets/antidote/antidote.tscn" id="7_osgb5"]
 
 [sub_resource type="Animation" id="Animation_r2o34"]
 resource_name = "close_lid"
@@ -44,7 +45,7 @@ shader = ExtResource("2_spcrf")
 shader_parameter/is_active = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l55jl"]
-size = Vector2(44, 51)
+size = Vector2(43, 34)
 
 [node name="CrateArea" type="Area2D"]
 gravity = 90.0
@@ -90,8 +91,8 @@ texture = ExtResource("4_mblyb")
 zoom = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -73.5)
+position = Vector2(0.5, -37)
 shape = SubResource("RectangleShape2D_l55jl")
 
-[node name="End" type="Marker2D" parent="."]
-position = Vector2(0, -12)
+[node name="AntidoteBody" parent="." instance=ExtResource("7_osgb5")]
+position = Vector2(1, -78)
