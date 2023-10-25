@@ -45,9 +45,9 @@ func apply_fan_forces(delta : float):
 		apply_force( (self.global_transform.y * -vertical_force) * fan_strength, relative_force_location)
 	else:
 		if self.rotation<0:
-			self.angular_velocity=2
+			self.angular_velocity=1.5*PI
 		elif self.rotation>0:
-			self.angular_velocity=-2
+			self.angular_velocity=-1.5*PI
 
 func on_integrate_forces(state):
 	var rotation_radians = deg_to_rad(rotation_degrees)
