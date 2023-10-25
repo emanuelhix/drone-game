@@ -34,9 +34,15 @@ func apply_fan_forces(delta : float):
 	# if no trigger buttons are held, fan strength is zero, which causes no upwards force to be applied on this frame. 
 	# thus, the drone falls with gravity.
 	var fan_strength : int = clamp(Input.get_action_strength("left_fan") + Input.get_action_strength("right_fan"), 0, 1)
-	apply_force( (self.global_transform.y * -vertical_force) * fan_strength, relative_force_location)
-	if relative_force_location == Vector2.ZERO:
-		rotation = 0
+	if(Input.get_action_strength("left_fan") > 0 && Input.get_action_strength("right_fan") > 0):
+		apply_force(Vector2(0,-1)*vertical_force, left_side)
+		apply_force(Vector2(0,-1)*vertical_force, right_side)
+		if self.rotation<0:
+			self.angular_velocity=3
+		elif self.rotation>0:
+			self.angular_velocity=-3
+	else:
+		apply_force( (self.global_transform.y * -vertical_force) * fan_strength, relative_force_location)
 
 func on_integrate_forces(state):
 	var rotation_radians = deg_to_rad(rotation_degrees)
@@ -44,9 +50,9 @@ func on_integrate_forces(state):
 	var new_transform = Transform2D(new_rotation, self.position)
 	self.transform = new_transform
 	if self.rotation <= -9*PI/30 and self.angular_velocity < 0:
-		self.angular_velocity = 2;
+		self.angular_velocity = 2
 	elif self.rotation >= 9*PI/30 and self.angular_velocity > 0:
-		self.angular_velocity = -2;
+		self.angular_velocity = -2
 
 func on_drop_item(item : PhysicsBody2D):
 	item.top_level = true
