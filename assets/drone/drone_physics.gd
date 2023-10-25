@@ -14,7 +14,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
-		on_drop_item(carried_antidote)
+		on_drop_item()
 
 func _physics_process(delta):
 	apply_fan_forces(delta)
@@ -34,9 +34,20 @@ func apply_fan_forces(delta : float):
 	# if no trigger buttons are held, fan strength is zero, which causes no upwards force to be applied on this frame. 
 	# thus, the drone falls with gravity.
 	var fan_strength : int = clamp(Input.get_action_strength("left_fan") + Input.get_action_strength("right_fan"), 0, 1)
-	apply_force( (self.global_transform.y * -vertical_force) * fan_strength, relative_force_location)
-	if relative_force_location == Vector2.ZERO:
-		rotation = 0
+	if(Input.get_action_strength("left_fan") > 0 and Input.get_action_strength("right_fan") > 0):
+		apply_force(Vector2(0,-1)*vertical_force, left_side)
+		apply_force(Vector2(0,-1)*vertical_force, right_side)
+		if self.rotation<0:
+			self.angular_velocity=3
+		elif self.rotation>0:
+			self.angular_velocity=-3
+	elif(Input.get_action_strength("left_fan") > 0 or Input.get_action_strength("right_fan") > 0):
+		apply_force( (self.global_transform.y * -vertical_force) * fan_strength, relative_force_location)
+	else:
+		if self.rotation<0:
+			self.angular_velocity=2
+		elif self.rotation>0:
+			self.angular_velocity=-2
 
 func on_integrate_forces(state):
 	var rotation_radians = deg_to_rad(rotation_degrees)
@@ -44,14 +55,15 @@ func on_integrate_forces(state):
 	var new_transform = Transform2D(new_rotation, self.position)
 	self.transform = new_transform
 	if self.rotation <= -9*PI/30 and self.angular_velocity < 0:
-		self.angular_velocity = 2;
+		self.angular_velocity = 2
 	elif self.rotation >= 9*PI/30 and self.angular_velocity > 0:
-		self.angular_velocity = -2;
+		self.angular_velocity = -2
 
-func on_drop_item(item : PhysicsBody2D):
-	item.top_level = true
-	item.global_position = carry_position_marker.global_position
-	item.set_deferred("freeze", false)
+func on_drop_item():
+	carried_antidote.top_level = true
+	carried_antidote.global_position = carry_position_marker.global_position
+	carried_antidote.set_deferred("freeze", false)
+	carried_antidote = null
 
 func pick_up_item(item : PhysicsBody2D):
 	carried_antidote.reparent(self)
