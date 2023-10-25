@@ -14,7 +14,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
-		on_drop_item(carried_antidote)
+		on_drop_item()
 
 func _physics_process(delta):
 	apply_fan_forces(delta)
@@ -48,10 +48,11 @@ func on_integrate_forces(state):
 	elif self.rotation >= 9*PI/30 and self.angular_velocity > 0:
 		self.angular_velocity = -2;
 
-func on_drop_item(item : PhysicsBody2D):
-	item.top_level = true
-	item.global_position = carry_position_marker.global_position
-	item.set_deferred("freeze", false)
+func on_drop_item():
+	carried_antidote.top_level = true
+	carried_antidote.global_position = carry_position_marker.global_position
+	carried_antidote.set_deferred("freeze", false)
+	carried_antidote = null
 
 func pick_up_item(item : PhysicsBody2D):
 	carried_antidote.reparent(self)
