@@ -24,7 +24,7 @@ position = Vector2(146, 13)
 texture = ExtResource("4_7f6jb")
 
 [node name="AntidoteBody" parent="." instance=ExtResource("3_nwurk")]
-position = Vector2(142, -24)
+position = Vector2(61, -1)
 freeze = true
 
 [editable path="Drone/PickUpArea"]
