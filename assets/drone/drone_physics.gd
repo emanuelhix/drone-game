@@ -15,7 +15,8 @@ func _ready():
 		carried_antidote.set_deferred("freeze", true)
 	left_side.x-=12
 	right_side.x+=12
-	pick_up_area.item_picked_up.connect(on_item_picked_up)
+	if pick_up_area != null:
+		pick_up_area.item_picked_up.connect(on_item_picked_up)
 
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
