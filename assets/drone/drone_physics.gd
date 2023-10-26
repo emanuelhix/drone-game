@@ -8,10 +8,14 @@ var left_side = self.position
 var right_side = self.position
 
 func _ready():
+	# if an antidote is parented to this object before hand, start the drone off carrying it.
 	if carried_antidote != null:
-		pick_up_item(carried_antidote)
+		carried_antidote.reparent(self)
+		carried_antidote.position = carry_position_marker.position
+		carried_antidote.set_deferred("freeze", true)
 	left_side.x-=12
 	right_side.x+=12
+	pick_up_area.item_picked_up.connect(on_item_picked_up)
 
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
@@ -67,11 +71,10 @@ func on_drop_item():
 	carried_antidote.global_position = carry_position_marker.global_position
 	carried_antidote.set_deferred("freeze", false)
 	carried_antidote = null
-
-func pick_up_item(item : PhysicsBody2D):
-	carried_antidote.reparent(self)
-	carried_antidote.position = carry_position_marker.position
-	carried_antidote.set_deferred("freeze", true)
+	pick_up_area.colliding_body = null
 
 func on_pick_up_item():
 	pick_up_area.trigger_pickup()
+
+func on_item_picked_up(item : RigidBody2D):
+	self.carried_antidote = item

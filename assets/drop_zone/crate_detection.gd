@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var end_marker : Marker2D = find_child("End")
 @onready var bezier_class = preload("res://assets/globals/bezier.gd").new()
-signal antidote_collected
+signal item_picked_up(item : RigidBody2D)
 
 var t : float = 0
 var start : Vector2
@@ -22,12 +22,17 @@ func _process(delta):
 		colliding_body.position = curve_position
 		t += delta/0.465
 	else:
+		t = 0
 		colliding_body.reparent(self.get_parent())
 		colliding_body.rotation = 0
 		colliding_body.global_position = end_marker.global_position
 		colliding_body.set_deferred("frozen", true)
+		item_picked_up.emit(colliding_body)
+		set_process(false)
 
 func trigger_pickup():
+	if colliding_body != null:
+		return
 	var overlapping_bodies = self.get_overlapping_bodies()
 	for body in overlapping_bodies:
 		if not body is Antidote:
