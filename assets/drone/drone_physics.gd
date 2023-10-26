@@ -1,6 +1,7 @@
 extends RigidBody2D
 @export var is_input_reversed : bool = true # if true, the right trigger will make the drone move right
 @export var carried_antidote : RigidBody2D = null
+@export var pick_up_area : Area2D = null
 @onready var carry_position_marker : Marker2D = find_child("CarryPosition")
 var vertical_force = 125
 var left_side = self.position
@@ -15,8 +16,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
 		on_drop_item()
-	if event.is_action_pressed("pick_up_item") and carried_antidote == null:
-		pass
+	if event.is_action_pressed("pick_up_item") and carried_antidote == null and pick_up_area != null:
+		on_pick_up_item()
 
 func _physics_process(delta):
 	apply_fan_forces(delta)
@@ -71,3 +72,6 @@ func pick_up_item(item : PhysicsBody2D):
 	carried_antidote.reparent(self)
 	carried_antidote.position = carry_position_marker.position
 	carried_antidote.set_deferred("freeze", true)
+
+func on_pick_up_item():
+	pick_up_area.trigger_pickup()
