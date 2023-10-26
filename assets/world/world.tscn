@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://f2m77gyb8pf5"]
+[gd_scene load_steps=9 format=3 uid="uid://f2m77gyb8pf5"]
 
 [ext_resource type="Script" path="res://assets/world/world.gd" id="1_xtiw6"]
 [ext_resource type="PackedScene" uid="uid://2soy2xyjbhh3" path="res://assets/drone/drone.tscn" id="2_xulga"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dhfm26yf3vlvx" path="res://assets/antidote/antidote.tscn" id="3_uvd67"]
 [ext_resource type="Script" path="res://assets/world/timer_label.gd" id="4_p4opm"]
 [ext_resource type="Script" path="res://assets/antidote/antidote.gd" id="4_w0q2y"]
+[ext_resource type="PackedScene" uid="uid://bcd0oxuly3g5q" path="res://assets/pick_up_zone/pick_up_area.tscn" id="5_vvccl"]
 [ext_resource type="PackedScene" uid="uid://ckkt5fo8jbctw" path="res://assets/drop_zone/drop_zone.tscn" id="6_dcqhq"]
 
 [node name="World" type="Node2D"]
@@ -16,11 +17,27 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="Drone" parent="." node_paths=PackedStringArray("carried_antidote") instance=ExtResource("2_xulga")]
+[node name="Drone" parent="." node_paths=PackedStringArray("pick_up_area") instance=ExtResource("2_xulga")]
 position = Vector2(257, 38)
-carried_antidote = NodePath("AntidoteBody")
+pick_up_area = NodePath("PickUpArea")
 
-[node name="AntidoteBody" parent="Drone" instance=ExtResource("3_uvd67")]
+[node name="PickUpArea" parent="Drone" instance=ExtResource("5_vvccl")]
+position = Vector2(0, 45)
+scale = Vector2(1.03387, 0.620393)
+
+[node name="AntidoteBody" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(482, 428)
+freeze = true
+script = ExtResource("4_w0q2y")
+
+[node name="AntidoteBody2" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(341, 428)
+freeze = true
+script = ExtResource("4_w0q2y")
+
+[node name="AntidoteBody3" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(231, 428)
+freeze = true
 script = ExtResource("4_w0q2y")
 
 [node name="Background" parent="." instance=ExtResource("3_oswmj")]
@@ -49,4 +66,12 @@ metadata/_edit_use_anchors_ = true
 [node name="CrateArea" parent="." instance=ExtResource("6_dcqhq")]
 position = Vector2(628, 630)
 
+[node name="CrateArea2" parent="." instance=ExtResource("6_dcqhq")]
+position = Vector2(489, 630)
+
+[node name="CrateArea3" parent="." instance=ExtResource("6_dcqhq")]
+position = Vector2(353, 630)
+
+[editable path="Drone"]
+[editable path="Drone/PickUpArea"]
 [editable path="Background"]

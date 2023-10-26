@@ -32,6 +32,7 @@ func on_body_entered(body : RigidBody2D):
 	if !(body is Antidote):
 		return
 	self.colliding_body = body
+	body.is_collected = true
 	body.freeze_mode = body.FREEZE_MODE_STATIC
 	body.set_deferred("freeze", true)
 	body.top_level = true
