@@ -1,7 +1,9 @@
 extends Area2D
 
 @onready var bezier_class = preload("res://assets/globals/bezier.gd").new()
-@onready var carry_position_marker : Marker2D = get_parent().find_child("CarryPosition")
+@onready var drone : RigidBody2D = get_parent()
+@onready var carry_position_marker : Marker2D = drone.find_child("CarryPosition")
+
 signal item_picked_up(item : RigidBody2D)
 
 var t : float = 0
@@ -20,13 +22,12 @@ func _process(delta):
 	if t <= 1 and colliding_body != null:
 		var curve_position : Vector2 = bezier_class.quadratic_bezier(start, middle, end, t)
 		colliding_body.position = curve_position
-		t += delta/0.465
+		t += delta/0.3
 	else:
 		t = 0
 		colliding_body.reparent(self.get_parent())
 		colliding_body.rotation = 0
 		colliding_body.global_position = carry_position_marker.global_position
-		colliding_body.set_deferred("frozen", true)
 		item_picked_up.emit(colliding_body)
 		set_process(false)
 

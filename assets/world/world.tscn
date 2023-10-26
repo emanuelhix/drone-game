@@ -22,9 +22,21 @@ position = Vector2(257, 38)
 pick_up_area = NodePath("PickUpArea")
 
 [node name="PickUpArea" parent="Drone" instance=ExtResource("5_vvccl")]
+position = Vector2(0, 45)
+scale = Vector2(1.03387, 0.620393)
 
 [node name="AntidoteBody" parent="." instance=ExtResource("3_uvd67")]
 position = Vector2(482, 428)
+freeze = true
+script = ExtResource("4_w0q2y")
+
+[node name="AntidoteBody2" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(341, 428)
+freeze = true
+script = ExtResource("4_w0q2y")
+
+[node name="AntidoteBody3" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(231, 428)
 freeze = true
 script = ExtResource("4_w0q2y")
 
@@ -53,6 +65,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CrateArea" parent="." instance=ExtResource("6_dcqhq")]
 position = Vector2(628, 630)
+
+[node name="CrateArea2" parent="." instance=ExtResource("6_dcqhq")]
+position = Vector2(489, 630)
+
+[node name="CrateArea3" parent="." instance=ExtResource("6_dcqhq")]
+position = Vector2(353, 630)
 
 [editable path="Drone"]
 [editable path="Drone/PickUpArea"]
