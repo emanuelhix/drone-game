@@ -68,9 +68,13 @@ func on_integrate_forces(state):
 		self.angular_velocity = -2
 
 func on_drop_item():
-	carried_antidote.top_level = true
+	carried_antidote.top_level = false
 	carried_antidote.global_position = carry_position_marker.global_position
 	carried_antidote.set_deferred("freeze", false)
+	carried_antidote.reparent(get_parent())
+	carried_antidote.is_dropped = true
+	var despawn_timer = get_tree().create_timer(3)
+	despawn_timer.timeout.connect(carried_antidote.queue_free)
 	carried_antidote = null
 	if pick_up_area != null:
 		pick_up_area.colliding_body = null
