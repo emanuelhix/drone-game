@@ -20,7 +20,6 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
-		print(carried_antidote)
 		on_drop_item()
 	elif event.is_action_pressed("pick_up_item") and carried_antidote == null and pick_up_area != null:
 		on_pick_up_item()
