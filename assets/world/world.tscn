@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=9 format=3 uid="uid://f2m77gyb8pf5"]
+=======
+[gd_scene load_steps=10 format=3 uid="uid://f2m77gyb8pf5"]
+>>>>>>> score_john
 
 [ext_resource type="Script" path="res://assets/world/world.gd" id="1_xtiw6"]
 [ext_resource type="PackedScene" uid="uid://2soy2xyjbhh3" path="res://assets/drone/drone.tscn" id="2_xulga"]
@@ -8,6 +12,9 @@
 [ext_resource type="Script" path="res://assets/antidote/antidote.gd" id="4_w0q2y"]
 [ext_resource type="PackedScene" uid="uid://bcd0oxuly3g5q" path="res://assets/pick_up_zone/pick_up_area.tscn" id="5_vvccl"]
 [ext_resource type="PackedScene" uid="uid://ckkt5fo8jbctw" path="res://assets/drop_zone/drop_zone.tscn" id="6_dcqhq"]
+[ext_resource type="Script" path="res://assets/world/Score.gd" id="7_0wetf"]
+
+[sub_resource type="Theme" id="Theme_74nu1"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_xtiw6")
@@ -63,9 +70,22 @@ script = ExtResource("4_p4opm")
 game_timer = NodePath("../../../GameTimer")
 metadata/_edit_use_anchors_ = true
 
+[node name="Score" type="Label" parent="UILayer/GameUI"]
+layout_mode = 0
+offset_left = 702.0
+offset_top = 57.0
+offset_right = 809.0
+offset_bottom = 96.0
+theme = SubResource("Theme_74nu1")
+theme_override_colors/font_outline_color = Color(0.333333, 0.623529, 0.498039, 1)
+theme_override_font_sizes/font_size = 32
+text = "x0 collected"
+script = ExtResource("7_0wetf")
+
 [node name="CrateArea" parent="." instance=ExtResource("6_dcqhq")]
 position = Vector2(628, 630)
 
+<<<<<<< HEAD
 [node name="CrateArea2" parent="." instance=ExtResource("6_dcqhq")]
 position = Vector2(489, 630)
 
@@ -74,4 +94,8 @@ position = Vector2(353, 630)
 
 [editable path="Drone"]
 [editable path="Drone/PickUpArea"]
+=======
+[connection signal="antidote_collected" from="CrateArea" to="UILayer/GameUI/Score" method="_on_crate_area_antidote_collected"]
+
+>>>>>>> score_john
 [editable path="Background"]
