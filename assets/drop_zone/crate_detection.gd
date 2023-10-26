@@ -17,25 +17,28 @@ func _ready():
 
 func _process(delta):
 	# curve path
+	end = end_marker.global_position
 	if t <= 1 and colliding_body != null:
 		var curve_position : Vector2 = bezier_class.quadratic_bezier(start, middle, end, t)
 		colliding_body.position = curve_position
 		t += delta/0.465
 	else:
+		colliding_body.reparent(self)
+		colliding_body.global_position = end
 		colliding_body.rotation = 0
 		antidote_collected.emit()
 		# cleanup
 		set_process(false)
 		self.body_entered.disconnect(on_body_entered)
 
-func on_body_entered(body : RigidBody2D):
+func on_body_entered(body):
 	if !(body is Antidote):
 		return
 	self.colliding_body = body
 	body.is_collected = true
 	body.freeze_mode = body.FREEZE_MODE_STATIC
 	body.set_deferred("freeze", true)
-	body.top_level = true
+	#body.top_level = true
 	self.start = body.global_position
 	colliding_body.global_position = self.start
 	var size = self.find_child("CollisionShape2D").shape.size

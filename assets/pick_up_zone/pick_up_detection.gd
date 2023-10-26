@@ -25,6 +25,7 @@ func _process(delta):
 		t += delta/0.3
 	else:
 		t = 0
+		colliding_body.top_level = false
 		colliding_body.reparent(self.get_parent())
 		colliding_body.rotation = 0
 		colliding_body.global_position = carry_position_marker.global_position
@@ -36,8 +37,9 @@ func trigger_pickup():
 		return
 	var overlapping_bodies = self.get_overlapping_bodies()
 	for body in overlapping_bodies:
-		if body is Antidote and !body.is_collected:
+		if body is Antidote and !body.is_collected and !body.is_dropped:
 			self.colliding_body = body
+			self.colliding_body.top_level = false
 			self.start = body.global_position
 			var size = self.find_child("CollisionShape2D").shape.size
 			self.middle = self.global_position + Vector2(0, randf_range(-size.y/6, size.y/6))
