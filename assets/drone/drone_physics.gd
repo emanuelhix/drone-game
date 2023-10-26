@@ -15,6 +15,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("drop_item") and carried_antidote != null:
 		on_drop_item()
+	if event.is_action_pressed("pick_up_item") and carried_antidote == null:
+		pass
 
 func _physics_process(delta):
 	apply_fan_forces(delta)
