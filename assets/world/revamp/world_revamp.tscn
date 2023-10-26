@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c2strhqiuv4cy"]
+[gd_scene load_steps=30 format=3 uid="uid://c2strhqiuv4cy"]
 
 [ext_resource type="Texture2D" uid="uid://dcbiemcm8kpx2" path="res://assets/world/revamp/building01.png" id="1_seu2v"]
 [ext_resource type="Script" path="res://assets/world/world.gd" id="1_ymeam"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cfhcxcuumosmh" path="res://assets/world/revamp/building06.png" id="9_dkyxj"]
 [ext_resource type="Texture2D" uid="uid://xdpe1euyrlhw" path="res://assets/world/revamp/tilset.png" id="10_vhlpr"]
 [ext_resource type="PackedScene" uid="uid://ckkt5fo8jbctw" path="res://assets/drop_zone/drop_zone.tscn" id="15_icgkg"]
+[ext_resource type="Script" path="res://assets/world/Score.gd" id="17_d2wr3"]
 [ext_resource type="Texture2D" uid="uid://ckjr1g444e6mm" path="res://assets/world/revamp/AntidoteSpawner.png" id="17_xphfd"]
 [ext_resource type="Script" path="res://assets/world/timer_label.gd" id="18_fwy20"]
 [ext_resource type="Script" path="res://assets/world/revamp/AntidoteSpawner.gd" id="19_agadq"]
@@ -909,6 +910,18 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("18_fwy20")
 game_timer = NodePath("../../../GameTimer")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="UILayer/GameUI" node_paths=PackedStringArray("drop_zone_0", "drop_zone_1")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.875
+anchor_bottom = 0.875
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("17_d2wr3")
+drop_zone_0 = NodePath("../../../CrateArea")
+drop_zone_1 = NodePath("../../../CrateArea2")
 metadata/_edit_use_anchors_ = true
 
 [node name="GameTimer" type="Timer" parent="."]
