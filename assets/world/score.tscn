@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://0picmdem0ug7"]
+
+[ext_resource type="Script" path="res://assets/world/Score.gd" id="1_q04mn"]
+
+[sub_resource type="Theme" id="Theme_74nu1"]
+
+[node name="Score" type="Label"]
+offset_left = 702.0
+offset_top = 57.0
+offset_right = 809.0
+offset_bottom = 96.0
+theme = SubResource("Theme_74nu1")
+theme_override_colors/font_outline_color = Color(0.333333, 0.623529, 0.498039, 1)
+theme_override_font_sizes/font_size = 32
+text = "x0 collected"
+script = ExtResource("1_q04mn")
