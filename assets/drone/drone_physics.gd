@@ -72,7 +72,8 @@ func on_drop_item():
 	carried_antidote.global_position = carry_position_marker.global_position
 	carried_antidote.set_deferred("freeze", false)
 	carried_antidote = null
-	pick_up_area.colliding_body = null
+	if pick_up_area != null:
+		pick_up_area.colliding_body = null
 
 func on_pick_up_item():
 	pick_up_area.trigger_pickup()
