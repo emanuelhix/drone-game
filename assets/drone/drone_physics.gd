@@ -6,6 +6,7 @@ extends RigidBody2D
 var vertical_force = 125
 var left_side = self.position
 var right_side = self.position
+var first_input = false # hot fixing idle jittering bug
 
 func _ready():
 	# if an antidote is parented to this object before hand, start the drone off carrying it.
@@ -23,11 +24,17 @@ func _input(event):
 		on_drop_item()
 	elif event.is_action_pressed("pick_up_item") and carried_antidote == null and pick_up_area != null:
 		on_pick_up_item()
+	if event.is_action_pressed("left_fan") or event.is_action_pressed("right_fan"):
+		first_input = true
 
 func _physics_process(delta):
+	if !first_input:
+		return
 	apply_fan_forces(delta)
 
 func _integrate_forces(state):
+	if !first_input:
+		return 
 	on_integrate_forces(state)
 
 func apply_fan_forces(delta : float):
