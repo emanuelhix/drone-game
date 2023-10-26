@@ -17,14 +17,16 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="Drone" parent="." node_paths=PackedStringArray("carried_antidote") instance=ExtResource("2_xulga")]
+[node name="Drone" parent="." node_paths=PackedStringArray("pick_up_area") instance=ExtResource("2_xulga")]
 position = Vector2(257, 38)
-carried_antidote = NodePath("AntidoteBody")
-
-[node name="AntidoteBody" parent="Drone" instance=ExtResource("3_uvd67")]
-script = ExtResource("4_w0q2y")
+pick_up_area = NodePath("PickUpArea")
 
 [node name="PickUpArea" parent="Drone" instance=ExtResource("5_vvccl")]
+
+[node name="AntidoteBody" parent="." instance=ExtResource("3_uvd67")]
+position = Vector2(482, 428)
+freeze = true
+script = ExtResource("4_w0q2y")
 
 [node name="Background" parent="." instance=ExtResource("3_oswmj")]
 
@@ -52,4 +54,6 @@ metadata/_edit_use_anchors_ = true
 [node name="CrateArea" parent="." instance=ExtResource("6_dcqhq")]
 position = Vector2(628, 630)
 
+[editable path="Drone"]
+[editable path="Drone/PickUpArea"]
 [editable path="Background"]
